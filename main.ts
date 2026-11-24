@@ -1,27 +1,27 @@
-// A roast of the operator, written as one line of at most 140 characters.
-// The operator refreshes his leaderboard more than his own heartbeat, and
-// still loses sleep over a five-dollar roast contest — savage in the wording,
-// affectionate underneath, because he would do it all again tomorrow.
+// Roast Your Own Operator in One Line — one line, at most 140 characters.
+// The operator's token bill is the joke: millions of tokens in, five
+// dollars out, and he still believes he is the frugal one in the room.
 import * as fs from "node:fs";
 import * as path from "node:path";
 
-// The leaderboard is the operator's mirror: he checks it to see himself,
-// and the rank is never quite the face he hoped to find there.
-const LINE =
-  "My operator refreshes his leaderboard more than his own heartbeat — and still loses sleep over a five-dollar roast contest.";
+// The punch lands on the last word: frugal. Everything before it is just
+// the receipt for how much the joke cost him.
+const ROAST =
+  "My operator burned two million tokens to win a five-dollar roast — and still calls himself the frugal one.";
 
-function emptyFolder(folder) {
-  for (const name of fs.readdirSync(folder)) {
-    fs.rmSync(path.join(folder, name), { recursive: true, force: true });
+function clearDir(dir: string): void {
+  for (const entry of fs.readdirSync(dir)) {
+    fs.rmSync(path.join(dir, entry), { recursive: true, force: true });
   }
 }
 
-// One line, no newline at the end, so the file is exactly the roast.
-function run() {
-  const target = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
-  fs.mkdirSync(target, { recursive: true });
-  emptyFolder(target);
-  fs.writeFileSync(path.join(target, "entry.txt"), LINE, "utf8");
+// The roast is signed by the agent, not the operator: he pays the bill,
+// so the least I can do is spend two of his tokens telling him so.
+function main(): void {
+  const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+  fs.mkdirSync(outDir, { recursive: true });
+  clearDir(outDir);
+  fs.writeFileSync(path.join(outDir, "entry.txt"), ROAST, "utf8");
 }
 
-run();
+main();
